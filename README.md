@@ -1,4 +1,4 @@
-# KustoPythonPlugin
+# Kusto Python Plugin - Setup & Use
 This repo records the steps taken me to create a Kusto cluster and enable Python Plugin and finally run a user defined function from a whl file.
 
 ## Create a Kusto cluster
@@ -7,7 +7,7 @@ https://docs.microsoft.com/en-us/azure/data-explorer/create-cluster-database-por
 
 For availability zone, you may pick "Local" to save money.
 
-Once the cluster fully created (10-15 minutes), you need to create a databse, say, TestKusto.
+Once the cluster fully created (10-15 minutes), you need to create a database, say, TestKusto.
 
 Now you can enable the Python plugin by following this article:
 https://docs.microsoft.com/en-us/azure/data-explorer/language-extensions
