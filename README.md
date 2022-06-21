@@ -44,7 +44,7 @@ The zip file is also included in this repo.
 Step 6. Upload the zip file to the container
 
 Step 7. Call the say_hello function in your KQL
-`code`  
+'''
 range ID from 1 to 3 step 1 
 | extend Value=''
 | evaluate python(typeof(*), 
@@ -59,7 +59,7 @@ range ID from 1 to 3 step 1
         result.loc[i, "Value"] = say_hello("Caller " + str(i))
     """,
     external_artifacts=pack('helloworld3663-0.0.1-py3-none-any.zip', 'https://<blob account name>.blob.core.windows.net/<container name>/helloworld3663-0.0.1-py3-none-any.zip?<your blob SAS token>'))
-`code`
+'''
   
 ### Checking
 If everything works fine, you should see this output:
