@@ -59,7 +59,7 @@ range ID from 1 to 3 step 1
     ```,
     external_artifacts=pack('helloworld3663-0.0.1-py3-none-any.zip', 'https://<blob account name>.blob.core.windows.net/<container name>/helloworld3663-0.0.1-py3-none-any.zip?<your blob SAS token>'))
     
-### Check
+### Checking
 If everything works fine, you should see this output:
   
 ID	Value
