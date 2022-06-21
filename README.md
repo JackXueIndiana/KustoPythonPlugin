@@ -17,4 +17,48 @@ This will take you another 5 minutes to finish the cluster enabling process.
 Be aware that the currently Python v. 3.6 is supported. For details you may follow this article: 
 https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/pythonplugin?pivots=azuredataexplorer
 
+### Checking:
+Run .show cluster you should see your cluster with only one node.
+
+Run .show plugins you should see all plugins that have been enabled (including python).
+
 ## Install Python Package
+Step 1: Create a blob container to host the packages, preferably in the same place as your cluster. For example, 
+https://<blob account name>.blob.core.windows.net/<container name>.
+
+Step 2: Grant yourself AllDatabasesAdmin permissions from this cluster's IAM.
+  
+Step 3: Alter the cluster's callout policy to allow access to that blob container.
+This change requires AllDatabasesAdmin permissions. For example, to enable access to a blob located the container defined above, run the following command:
+.alter-merge cluster policy callout @'[ { "CalloutType": "sandbox_artifacts", "CalloutUriRegex": "<blob account name>.blob.core.windows.net/<container name>","CanCall": true } ]'
+  
+Step 4. Wrap your Python function in a WHL file.
+I have a say_hello function WHL file downloaded from https://pypi.org/project/helloworld3663/   
+The gz file also downloaded so we can reproduce the WHL file by running 
+
+pip wheel [-w download-dir] package-name
+  
+Step 5. Zip the WHL file.  
+The zip file is also included in this repo.  
+  
+Step 6. Upload the zip file to the container
+
+Step 7. Call the say_hello function in your KQL
+range ID from 1 to 3 step 1 
+| extend Value=''
+| evaluate python(typeof(*), 
+    ```if 1:
+    from sandbox_utils import Zipackage
+    Zipackage.install("helloworld3663-0.0.1-py3-none-any.zip")
+    from helloworld3663 import say_hello
+    
+    result = df
+    
+    for i in range(df.shape[0]):
+        result.loc[i, "Value"] = say_hello("Caller " + str(i))
+    ```,
+    external_artifacts=pack('helloworld3663-0.0.1-py3-none-any.zip', 'https://<blob account name>.blob.core.windows.net/<container name>/helloworld3663-0.0.1-py3-none-any.zip?<your blob SAS token>'))
+    
+### Check
+If everything works fine, you should see this output:
+  
