@@ -43,28 +43,13 @@ The zip file is also included in this repo.
   
 Step 6. Upload the zip file to the container
 
-Step 7. Call the say_hello function in your KQL
-'''
-range ID from 1 to 3 step 1 
-| extend Value=''
-| evaluate python(typeof(*), 
-    """if 1:
-    from sandbox_utils import Zipackage
-    Zipackage.install("helloworld3663-0.0.1-py3-none-any.zip")
-    from helloworld3663 import say_hello
-    
-    result = df
-    
-    for i in range(df.shape[0]):
-        result.loc[i, "Value"] = say_hello("Caller " + str(i))
-    """,
-    external_artifacts=pack('helloworld3663-0.0.1-py3-none-any.zip', 'https://<blob account name>.blob.core.windows.net/<container name>/helloworld3663-0.0.1-py3-none-any.zip?<your blob SAS token>'))
-'''
-  
+## Call the Python Function in KQL   
+Call the say_hello function in your KQL
+
 ### Checking
 If everything works fine, you should see this output:
   
-ID	Value
-1	Hello, Caller 0
-2	Hello, Caller 1
-3	Hello, Caller 2
+| ID	| -- Value -- |
+|1|	Hello, Caller 0|
+|2	Hello, Caller 1|
+|3	Hello, Caller 2|
