@@ -1,0 +1,15 @@
+range ID from 1 to 3 step 1 
+| extend Value=''
+| evaluate python(typeof(*), 
+    ```if 1:
+    from sandbox_utils import Zipackage
+    Zipackage.install("helloworld3663-0.0.1-py3-none-any.zip")
+    from helloworld3663 import say_hello
+    
+    result = df
+    
+    for i in range(df.shape[0]):
+        result.loc[i, "Value"] = say_hello("Caller " + str(i))
+    ```,
+    external_artifacts=pack('helloworld3663-0.0.1-py3-none-any.zip', 'https://<blob account>.blob.core.windows.net/<container name>/helloworld3663-0.0.1-py3-none-any.zip?<container shared access token>'))
+    
