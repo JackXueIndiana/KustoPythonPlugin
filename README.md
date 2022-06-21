@@ -49,7 +49,8 @@ Call the say_hello function in your KQL
 ### Checking
 If everything works fine, you should see this output:
   
-| ID	| -- Value -- |
+| ID	| Value |
+|-----|-----------------|  
 |1|	Hello, Caller 0|
 |2|	Hello, Caller 1|
 |3|	Hello, Caller 2|
