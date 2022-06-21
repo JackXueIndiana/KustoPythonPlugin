@@ -62,3 +62,7 @@ range ID from 1 to 3 step 1
 ### Check
 If everything works fine, you should see this output:
   
+ID	Value
+1	Hello, Caller 0
+2	Hello, Caller 1
+3	Hello, Caller 2
