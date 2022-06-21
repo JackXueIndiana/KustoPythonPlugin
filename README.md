@@ -1,5 +1,8 @@
 # Kusto Python Plugin - Setup & Use
-This repo records the steps taken me to create a Kusto cluster and enable Python Plugin and finally run a user defined function from a whl file.
+This repo records the steps we took to create a Kusto cluster and enable Python Plugin and finally run a user defined function from a whl file.
+
+## Before we go
+This plugin is installed in a sandbox on each node. Based on the document, https://docs.microsoft.com/en-us/azure/data-explorer/kusto/concepts/sandboxes#virtual-machine-sizes, the sandbox sizes about 20 GB and uses about 2.5% the SSD capacity of a D14_v2 VM, or 0.7% the SSD capacity of a L16_v1 VM. Related to clsuter performance, Hyper-threading is disabled for hyper-threaded VM sizes when sandboxes are enabled.  
 
 ## Create a Kusto cluster
 You can create a Kusto cluster for dev/test by following this article: 
