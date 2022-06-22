@@ -49,7 +49,7 @@ The zip file is also included in this repo.
 Step 6. Upload the zip file to the container
 
 ## Call the Python Function in KQL   
-Call the say_hello function in your KQL
+Call the say_hello function in your KQL (see included *.kql file for details).
 
 ### Checking
 If everything works fine, you should see this output:
