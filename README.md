@@ -33,7 +33,9 @@ Step 2: Grant yourself AllDatabasesAdmin permissions from this cluster's IAM.
   
 Step 3: Alter the cluster's callout policy to allow access to that blob container.
 This change requires AllDatabasesAdmin permissions. For example, to enable access to a blob located the container defined above, run the following command:
+'''
 .alter-merge cluster policy callout @'[ { "CalloutType": "sandbox_artifacts", "CalloutUriRegex": "<blob account name>.blob.core.windows.net/<container name>","CanCall": true } ]'
+'''
   
 Step 4. Wrap your Python function in a WHL file.
 I have a say_hello function WHL file downloaded from https://pypi.org/project/helloworld3663/   
