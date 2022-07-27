@@ -1,5 +1,5 @@
 range ID from 1 to 3 step 1 
-| extend Value=''
+| extend Request='', Response=''
 | evaluate python(typeof(*), 
     ```if 1:
     from sandbox_utils import Zipackage
@@ -9,7 +9,8 @@ range ID from 1 to 3 step 1
     result = df
     
     for i in range(df.shape[0]):
-        result.loc[i, "Value"] = say_hello("Caller " + str(i))
+        result.loc[i, "Request"] = "Caller " + str(i)
+        result.loc[i, "Response"] = say_hello(result.loc[i, "Request"])
     ```,
     external_artifacts=pack('helloworld3663-0.0.1-py3-none-any.zip', 'https://<blob account>.blob.core.windows.net/<container name>/helloworld3663-0.0.1-py3-none-any.zip?<container shared access token>'))
     
